@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Réalisations Techniques Opticode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#F1F5F9] font-['Inter']">
+
+<div id="progress-bar" class="fixed top-0 left-0 h-1 z-[110] bg-gradient-to-r from-indigo-600 via-purple-600 to-teal-500 transition-all duration-150" style="width: 0%;"></div>
+
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-[100] transition-all duration-500">
+    <div class="bg-white/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-[2rem] px-6 md:px-8 h-20 flex justify-between items-center">
+        
+        <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-8 h-8 bg-gradient-to-br from-indigo-600 to-teal-400 rounded-lg flex items-center justify-center text-white font-black text-sm group-hover:rotate-12 transition-transform duration-300">O</div>
+            <span class="text-xl font-black text-slate-900 tracking-tighter italic">
+                Opticode<span class="text-indigo-600 animate-pulse">.</span>
+            </span>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="services.html" class="nav-item text-[11px] font-black text-slate-500 hover:text-indigo-600 uppercase tracking-[0.2em] italic">Services</a>
+            <a href="portfolio.html" class="nav-item text-[11px] font-black text-slate-500 hover:text-indigo-600 uppercase tracking-[0.2em] italic">Portfolio</a>
+            <a href="methode.html" class="nav-item text-[11px] font-black text-slate-500 hover:text-indigo-600 uppercase tracking-[0.2em] italic">Méthode</a>
+            <a href="tarifs.html" class="nav-item text-[11px] font-black text-slate-500 hover:text-indigo-600 uppercase tracking-[0.2em] italic">Tarifs</a>
+            
+            <a href="contact.html" class="relative group overflow-hidden px-6 py-2.5 bg-slate-900 text-white rounded-full font-bold text-xs uppercase tracking-widest transition-all hover:pr-10 italic">
+                <span class="relative z-10">Briefez-nous</span>
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">→</span>
+            </a>
+        </div>
+
+        <button id="mobile-menu-button" class="md:hidden p-2 text-slate-900 focus:outline-none hover:bg-slate-50 rounded-full transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden absolute top-24 left-0 w-full bg-white/95 backdrop-blur-2xl border border-slate-100 rounded-[2.5rem] shadow-2xl flex flex-col p-10 space-y-8 text-2xl font-black italic tracking-tighter overflow-hidden">
+        <a href="services.html" class="hover:text-indigo-600 transition-colors">Services</a>
+        <a href="portfolio.html" class="hover:text-indigo-600 transition-colors">Portfolio</a>
+        <a href="methode.html" class="hover:text-indigo-600 transition-colors">Méthode</a>
+        <a href="tarifs.html" class="hover:text-indigo-600 transition-colors">Tarifs</a>
+        <hr class="border-slate-100">
+        <a href="contact.html" class="text-indigo-600 flex justify-between items-center">
+            Parlons de votre projet <span>→</span>
+        </a>
+    </div>
+</nav>
+
+<div class="h-28 md:h-36"></div>
+
+<header class="pt-16 pb-12 max-w-7xl mx-auto px-6 relative overflow-hidden">
+    
+    <div class="absolute top-0 left-6 right-6 h-[1px] bg-slate-100">
+        <div class="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-indigo-600 to-transparent animate-[shimmer_3s_infinite]"></div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 py-3 border-b border-slate-100 mb-16">
+        <div class="flex items-center gap-6">
+            <div class="group flex items-center gap-2 cursor-crosshair">
+                <span class="w-1.5 h-1.5 rounded-full bg-teal-500 shadow-[0_0_8px_#14b8a6]"></span>
+                <span class="text-[9px] font-mono font-black uppercase tracking-[0.2em] text-slate-900 italic">Live_System_Active</span>
+            </div>
+            <div class="h-3 w-[1px] bg-slate-200"></div>
+            <div class="flex gap-3">
+                <span class="text-[9px] font-mono font-bold text-slate-400 uppercase">Uptime: 99.9%</span>
+                <span class="text-[9px] font-mono font-bold text-slate-300 uppercase hidden sm:block">Env: Production</span>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <div class="px-3 py-1 rounded-full bg-slate-50 border border-slate-100 flex items-center gap-2">
+                <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest italic">Build_Ref:</span>
+                <span class="text-[8px] font-mono font-bold text-indigo-600">#004-POC</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-12 items-end relative">
+        <div class="lg:col-span-7">
+            <span class="inline-block text-[10px] font-black text-indigo-600 uppercase tracking-[0.4em] mb-4 italic">Portfolio_Index</span>
+            
+            <h1 class="text-5xl md:text-7xl font-black italic tracking-[-0.04em] text-slate-900 uppercase leading-[0.9] mb-8">
+                L'excellence <br>
+                <span class="relative">
+                    <span class="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-teal-400">par la preuve.</span>
+                    <span class="absolute bottom-2 left-0 w-full h-[6px] bg-indigo-50 -z-10"></span>
+                </span>
+            </h1>
+            
+            <p class="text-slate-500 text-sm md:text-base italic leading-relaxed max-w-lg border-l-2 border-slate-100 pl-6">
+                Une sélection d'actifs numériques conçus avec une rigueur mathématique. Pas de surplus, juste de l'ingénierie pure et des résultats mesurables.
+            </p>
+        </div>
+
+        <div class="lg:col-span-5 flex lg:justify-end">
+            <div class="relative p-8 bg-slate-50 rounded-[2rem] border border-slate-100 overflow-hidden group">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent -translate-y-full group-hover:translate-y-full transition-transform duration-[2s] pointer-events-none"></div>
+                
+                <div class="relative z-10 grid grid-cols-2 gap-8">
+                    <div class="space-y-1">
+                        <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest italic">Response_Time</p>
+                        <p class="text-2xl font-black italic text-slate-900 tracking-tighter">0.4s</p>
+                    </div>
+                    <div class="space-y-1">
+                        <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest italic">Performance</p>
+                        <p class="text-2xl font-black italic text-teal-500 tracking-tighter">A+</p>
+                    </div>
+                    <div class="col-span-2 space-y-2">
+                        <div class="w-full h-[2px] bg-slate-200 rounded-full overflow-hidden">
+                            <div class="h-full w-[85%] bg-indigo-600"></div>
+                        </div>
+                        <p class="text-[9px] font-bold italic text-slate-400 uppercase tracking-tight">Code_Quality_Index: 98/100</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(300%); }
+}
+</style>
+<section class="py-24 md:py-32 bg-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        
+        <div class="flex flex-wrap md:justify-center gap-3 mb-16 md:mb-24">
+            <button onclick="filterSelection('all')" class="btn-filter active px-8 py-3 rounded-2xl font-black text-[10px] tracking-[0.2em] uppercase transition-all bg-slate-900 text-white italic">Tous</button>
+            <button onclick="filterSelection('website')" class="btn-filter px-8 py-3 rounded-2xl font-black text-[10px] tracking-[0.2em] uppercase transition-all border border-slate-100 text-slate-400 hover:border-indigo-600 hover:text-indigo-600 italic">Sites Web</button>
+            <button onclick="filterSelection('ecommerce')" class="btn-filter px-8 py-3 rounded-2xl font-black text-[10px] tracking-[0.2em] uppercase transition-all border border-slate-100 text-slate-400 hover:border-indigo-600 hover:text-indigo-600 italic">E-Commerce</button>
+            <button onclick="filterSelection('app')" class="btn-filter px-8 py-3 rounded-2xl font-black text-[10px] tracking-[0.2em] uppercase transition-all border border-slate-100 text-slate-400 hover:border-indigo-600 hover:text-indigo-600 italic">Logiciels & Apps</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="project-item ecommerce group relative bg-slate-50 rounded-[2.5rem] overflow-hidden border border-slate-100 transition-all duration-500 hover:-translate-y-2">
+                <div class="relative h-64 overflow-hidden bg-slate-200">
+                    <img src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="GreenMarket">
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-black italic tracking-tighter text-slate-900">GreenMarket</h3>
+                        <span class="text-[8px] font-black border border-indigo-200 text-indigo-600 px-3 py-1 rounded-full uppercase italic">E-Commerce</span>
+                    </div>
+                    <p class="text-slate-500 text-xs mb-6 italic">Architecture Headless ultra-rapide (0.4s).</p>
+                    <p class="text-[9px] font-bold text-slate-400 tracking-tighter uppercase">Next.js / Shopify API</p>
+                </div>
+            </div>
+
+            <div class="project-item app group relative bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-800 transition-all duration-500 hover:-translate-y-2">
+                <div class="relative h-64 overflow-hidden bg-slate-800">
+                    <img src="https://images.unsplash.com/photo-1551288049-bbdac8a28a1e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700" alt="StaffSync">
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-black italic tracking-tighter text-white">StaffSync</h3>
+                        <span class="text-[8px] font-black border border-teal-500/50 text-teal-400 px-3 py-1 rounded-full uppercase italic">Logiciel B2B</span>
+                    </div>
+                    <p class="text-slate-400 text-xs mb-6 italic">Gestion RH en temps réel (WebSockets).</p>
+                    <p class="text-[9px] font-bold text-slate-500 tracking-tighter uppercase">React / Node.js / Redis</p>
+                </div>
+            </div>
+
+            <div class="project-item website group relative bg-slate-50 rounded-[2.5rem] overflow-hidden border border-slate-100 transition-all duration-500 hover:-translate-y-2">
+                <div class="relative h-64 overflow-hidden bg-slate-200">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="NovaSite">
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-2xl font-black italic tracking-tighter text-slate-900">NovaPay</h3>
+                        <span class="text-[8px] font-black border border-indigo-200 text-indigo-600 px-3 py-1 rounded-full uppercase italic">Site Web</span>
+                    </div>
+                    <p class="text-slate-500 text-xs mb-6 italic">Interface vitrine pour Fintech internationale.</p>
+                    <p class="text-[9px] font-bold text-slate-400 tracking-tighter uppercase">Vue 3 / GSAP Animation</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("project-item");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+    if (x[i].className.indexOf(c) > -1) {
+        x[i].style.display = "block";
+    }
+  }
+  
+  // Gestion du style des boutons
+  var btns = document.getElementsByClassName("btn-filter");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].classList.remove("bg-slate-900", "text-white");
+    btns[i].classList.add("text-slate-400", "border-slate-100");
+  }
+  event.currentTarget.classList.add("bg-slate-900", "text-white");
+  event.currentTarget.classList.remove("text-slate-400", "border-slate-100");
+}
+</script>
+<section class="py-24 md:py-40 bg-white px-6 overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+        <div class="relative bg-slate-900 rounded-[3rem] md:rounded-[5rem] p-10 md:p-24 overflow-hidden shadow-2xl shadow-indigo-500/10">
+            
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:30px_30px]"></div>
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px]"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-teal-500/10 rounded-full blur-[120px]"></div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-16">
+                
+                <div class="text-center lg:text-left max-w-2xl">
+                    <div class="inline-flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-8">
+                        <span class="text-teal-400 font-mono text-[10px] uppercase tracking-[0.3em]">Ready for deployment?</span>
+                    </div>
+                    
+                    <h2 class="text-5xl md:text-7xl font-black text-white italic tracking-tighter uppercase leading-[0.9] mb-8">
+                        Votre vision <br><span class="text-indigo-400">mérite ce code.</span>
+                    </h2>
+                    
+                    <p class="text-slate-400 text-lg md:text-xl italic leading-relaxed">
+                        Ne laissez pas une dette technique freiner votre croissance. Passons de l'idée à une infrastructure scalable dès aujourd'hui.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center gap-6">
+                    <a href="contact.html" class="group relative inline-flex items-center gap-6 bg-white text-slate-900 px-10 py-6 rounded-2xl font-black text-xs uppercase tracking-[0.2em] italic hover:bg-indigo-600 hover:text-white transition-all duration-500 shadow-xl shadow-white/5">
+    Démarrer le diagnostic
+    <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+</a>
+                    
+                    <div class="flex items-center gap-8 opacity-50">
+                        <div class="text-center">
+                            <p class="text-white font-black text-lg">24h</p>
+                            <p class="text-[8px] text-slate-400 uppercase font-bold tracking-widest">Réponse</p>
+                        </div>
+                        <div class="w-[1px] h-8 bg-white/10"></div>
+                        <div class="text-center">
+                            <p class="text-white font-black text-lg">100%</p>
+                            <p class="text-[8px] text-slate-400 uppercase font-bold tracking-widest">Garanti</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="bg-slate-900 pt-24 pb-12 px-6 overflow-hidden relative">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 via-teal-400 to-indigo-600"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:32px_32px]"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid lg:grid-cols-12 gap-16 mb-20">
+            
+            <div class="lg:col-span-5">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-black text-white italic">O</div>
+                    <span class="text-2xl font-black text-white italic tracking-tighter">Opticode<span class="text-indigo-500">.</span></span>
+                </div>
+                <p class="text-slate-400 text-sm italic leading-relaxed max-w-sm mb-8">
+                    Architecte de solutions numériques haute performance. Nous transformons vos visions complexes en infrastructures logicielles scalables.
+                </p>
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse shadow-[0_0_10px_#2dd4bf]"></span>
+                    <span class="text-[10px] font-mono text-teal-400 uppercase tracking-[0.2em]">System_Status: Operational</span>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-black text-[10px] uppercase tracking-widest mb-6 italic border-l-2 border-indigo-600 pl-3">Navigation</h4>
+                    <ul class="space-y-4 text-sm text-slate-500 font-bold italic">
+                        <li><a href="services.html" class="hover:text-indigo-400 transition-colors">./Services</a></li>
+                        <li><a href="portfolio.html" class="hover:text-indigo-400 transition-colors">./Portfolio</a></li>
+                        <li><a href="methode.html" class="hover:text-indigo-400 transition-colors">./Méthode</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-black text-[10px] uppercase tracking-widest mb-6 italic border-l-2 border-indigo-600 pl-3">Contact</h4>
+                    <ul class="space-y-4 text-sm text-slate-500 font-bold italic">
+                        <li><a href="contact.html" class="hover:text-indigo-400 transition-colors">Briefing_Room</a></li>
+                        <li class="text-[11px] font-mono lowercase opacity-50">contact.opticode@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest">© 2026 Opticode_Digital_Artisans // All_Rights_Reserved</span>
+            <div class="flex gap-6">
+                <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest cursor-help hover:text-white transition-colors">Privacy_Policy</span>
+                <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest cursor-help hover:text-white transition-colors">Terms_Of_Service</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        if (menu.classList.contains('hidden')) {
+            icon.setAttribute('d', 'M4 8h16M4 16h16');
+        } else {
+            icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+        }
+    });
+
+    function filterProjects(category) {
+        const cards = document.querySelectorAll('.project-card');
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        buttons.forEach(btn => {
+            btn.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
+            btn.classList.add('text-slate-400', 'border-slate-100');
+        });
+        
+        event.currentTarget.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            }, 300);
+        });
+    }
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+    });
+</script>
+
+</body>
+</html>

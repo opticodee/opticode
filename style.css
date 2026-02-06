@@ -1,0 +1,143 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
+:root {
+    --primary: #4F46E5;
+    --secondary: #14B8A6;
+    --dark: #0F172A;
+    --light: #F8FAFC;
+}
+
+body { font-family: 'Inter', sans-serif; scroll-smooth: always; }
+h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+
+.hero-gradient {
+    background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.08), transparent),
+                radial-gradient(circle at bottom left, rgba(20, 184, 166, 0.05), transparent);
+}
+
+.glass-card {
+    background: white;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary);
+}
+
+.btn-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-shine::after {
+    content: "";
+    position: absolute;
+    top: -50%; font-family: 'Inter', sans-serif;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255,255,255,0.1);
+    transform: rotate(45deg);
+    transition: 0.5s;
+}
+
+.btn-shine:hover::after { left: 120%; }
+
+
+
+.footer-link {
+    @apply text-slate-400 hover:text-indigo-400 transition-colors duration-300 flex items-center gap-2;
+}
+
+.footer-title {
+    @apply text-white font-bold uppercase tracking-widest text-sm mb-6;
+}
+
+.newsletter-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    @apply w-full p-3 rounded-xl text-white outline-none focus:border-indigo-500 transition-all;
+}
+
+
+/* Effet de flou sur le menu */
+.nav-glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Animation de soulignement moderne */
+.nav-link {
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #4F46E5;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Bouton avec ombre portée évolutive */
+.btn-nav {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.15);
+}
+
+.btn-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.25);
+}
+.hero-video {
+    filter: grayscale(100%) brightness(0.9);
+    mix-blend-mode: multiply;
+}
+::selection {
+  background-color: #4f46e5; /* Ton indigo */
+  color: white;
+}
+/* Animation de la pastille de survol */
+.nav-item {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    inset: -4px -12px;
+    background: rgba(79, 70, 229, 0.05);
+    border-radius: 12px;
+    scale: 0.8;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.nav-item:hover::before {
+    scale: 1;
+    opacity: 1;
+}
+
+/* Effet de réduction au scroll (optionnel via JS) */
+.nav-scrolled {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+}

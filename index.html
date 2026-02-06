@@ -1,0 +1,543 @@
+
+
+   <!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opticode | Agence d'Ingénierie Digitale Haute Performance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root { --primary: #6366f1; --dark: #0f172a; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafafa; overflow-x: hidden; width: 100%; }
+        h1, h2, h3, .font-title { font-family: 'Space Grotesk', sans-serif; }
+        
+        .bg-grain::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.03; pointer-events: none; z-index: 50;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 30px 60px -12px rgba(99, 102, 241, 0.15); }
+        
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-marquee { animation: marquee 40s linear infinite; }
+        .grid-bg { background-size: 40px 40px; background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px); }
+        
+        /* Correction Menu Mobile - Largeur maîtrisée */
+        #mobile-menu { 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            opacity: 0; 
+            pointer-events: none;
+            visibility: hidden;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            width: 90%; /* Prend 90% de la largeur pour laisser de l'air sur les côtés */
+            max-width: 400px; /* Évite d'être trop large sur tablettes */
+        }
+        #mobile-menu.active { 
+            opacity: 1; 
+            visibility: visible;
+            pointer-events: auto; 
+            display: flex !important; 
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-grain">
+
+    <div id="progress-bar" class="fixed top-0 left-0 h-[3px] z-[200] bg-gradient-to-r from-indigo-600 via-purple-500 to-teal-400 transition-all duration-150"></div>
+
+    <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-[100]">
+        <div class="bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg rounded-[2rem] px-6 md:px-8 h-20 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 bg-gradient-to-br from-indigo-600 to-teal-400 rounded-lg flex items-center justify-center text-white font-black text-sm group-hover:rotate-12 transition-transform duration-300">O</div>
+                <span class="text-xl font-black text-slate-900 tracking-tighter italic">Opticode<span class="text-indigo-600 animate-pulse">.</span></span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="services.html" class="text-[11px] font-black text-slate-500 hover:text-indigo-600 uppercase tracking-[0.2em] italic">Services</a>
+                <a href="portfolio.html" class="text-[11px] font-black text-slate-500 hover:text-indigo-600 uppercase tracking-[0.2em] italic">Portfolio</a>
+                <a href="methode.html" class="text-[11px] font-black text-slate-500 hover:text-indigo-600 uppercase tracking-[0.2em] italic">Méthode</a>
+                <a href="tarifs.html" class="text-[11px] font-black text-slate-500 hover:text-indigo-600 uppercase tracking-[0.2em] italic">Tarifs</a>
+                <a href="contact.html" class="px-6 py-2.5 bg-slate-900 text-white rounded-full font-bold text-xs uppercase tracking-widest hover:bg-indigo-600 transition-all italic">Briefez-nous</a>
+            </div>
+
+            <button id="mobile-menu-button" class="md:hidden p-2 text-slate-900 outline-none">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path id="path1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden absolute top-24 bg-white/95 backdrop-blur-2xl border border-slate-100 rounded-[2.5rem] shadow-2xl flex flex-col p-10 space-y-8 text-2xl font-black italic tracking-tighter">
+            <a href="services.html" class="hover:text-indigo-600 transition-colors">Services</a>
+            <a href="portfolio.html" class="hover:text-indigo-600 transition-colors">Portfolio</a>
+            <a href="methode.html" class="hover:text-indigo-600 transition-colors">Méthode</a>
+            <a href="tarifs.html" class="hover:text-indigo-600 transition-colors">Tarifs</a>
+            <hr class="border-slate-100">
+            <a href="contact.html" class="text-indigo-600">Parlons de votre projet →</a>
+        </div>
+    </nav>
+
+    <section class="relative pt-64 pb-32 px-6 grid-bg">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div data-aos="fade-up">
+                <div class="inline-flex items-center gap-3 px-4 py-2 bg-white border border-slate-100 rounded-full shadow-sm mb-8">
+                    <span class="flex h-2 w-2 rounded-full bg-indigo-600 animate-pulse"></span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Booking ouvert Q1 2026</span>
+                </div>
+                <h1 class="text-6xl lg:text-8xl font-bold tracking-tighter leading-[0.85] mb-10 italic">
+                    L'élite du <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-500">code créatif.</span>
+                </h1>
+                <p class="text-lg text-slate-500 max-w-md leading-relaxed mb-12 italic">Ingénierie de pointe et design minimaliste pour propulser vos ambitions numériques.</p>
+                <div class="flex items-center gap-8">
+                    <a href="contact.html" class="inline-block">
+    <button class="bg-indigo-600 text-white px-10 py-5 rounded-2xl font-bold shadow-xl hover:scale-105 transition-transform">
+        Démarrer un projet
+    </button>
+</a>
+                    <div class="hidden sm:block">
+                        <p class="text-2xl font-bold italic">99.9%</p>
+                        <p class="text-[9px] uppercase font-black text-slate-400 tracking-widest">Uptime Garanti</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative" data-aos="zoom-out">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1200" class="rounded-[2.5rem] shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 border-4 border-white" alt="Team">
+                <div class="absolute -bottom-8 -right-8 glass-card p-6 rounded-3xl shadow-xl">
+                    <p class="text-[10px] font-bold text-indigo-600 uppercase mb-2">Vitesse</p>
+                    <div class="flex items-end gap-1">
+                        <span id="perf-counter" class="text-4xl font-bold">0</span><span class="text-indigo-400 font-bold">ms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section class="py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="group bg-slate-900 rounded-[2.5rem] p-8 md:p-10 shadow-2xl hover:bg-indigo-950 transition-all duration-500 overflow-hidden relative" data-aos="fade-up">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <span class="text-indigo-400 font-bold italic opacity-50 uppercase text-[10px] tracking-widest">Standard Militaire</span>
+                        </div>
+                        <h4 class="text-white text-2xl font-bold italic mb-2">Code Certifié</h4>
+                        <p class="text-slate-400 text-sm italic leading-relaxed">Protection contre les failles OWASP et conformité RGPD native.</p>
+                    </div>
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-indigo-500/10 rounded-full blur-3xl group-hover:bg-indigo-500/20 transition-all"></div>
+                </div>
+
+                <div class="group bg-slate-900 rounded-[2.5rem] p-8 md:p-10 shadow-2xl hover:bg-teal-950 transition-all duration-500 overflow-hidden relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-teal-500/20 flex items-center justify-center text-teal-400 group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <span class="text-teal-400 font-bold italic opacity-50 uppercase text-[10px] tracking-widest">Liberté Totale</span>
+                        </div>
+                        <h4 class="text-white text-2xl font-bold italic mb-2">100% Propriété</h4>
+                        <p class="text-slate-400 text-sm italic leading-relaxed">Pas d'abonnement captif. Le code vous appartient à vie dès la livraison.</p>
+                    </div>
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-teal-500/10 rounded-full blur-3xl group-hover:bg-teal-500/20 transition-all"></div>
+                </div>
+
+                <div class="group bg-slate-900 rounded-[2.5rem] p-8 md:p-10 shadow-2xl hover:bg-purple-950 transition-all duration-500 overflow-hidden relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <span class="text-purple-400 font-bold italic opacity-50 uppercase text-[10px] tracking-widest">Score 100/100</span>
+                        </div>
+                        <h4 class="text-white text-2xl font-bold italic mb-2">Performance ++</h4>
+                        <p class="text-slate-400 text-sm italic leading-relaxed">Temps de chargement < 1s. Idéal pour booster votre référencement Google.</p>
+                    </div>
+                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 md:py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="max-w-3xl mb-16 md:mb-20" data-aos="fade-up">
+                <p class="text-indigo-600 font-bold text-[11px] uppercase tracking-[0.4em] mb-6 italic">Ingénierie & Design</p>
+                <h2 class="text-5xl md:text-7xl font-bold tracking-tighter italic leading-tight">
+                    Une stack moderne pour des <span class="text-indigo-600 underline underline-offset-8">produits d'exception.</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-4 h-full">
+                
+                <div class="md:col-span-4 md:row-span-1 glass-card p-8 md:p-10 rounded-[2.5rem] flex flex-col justify-between group relative overflow-hidden" data-aos="fade-up">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="text-4xl">🛍️</span>
+                            <h3 class="text-3xl font-bold italic">E-commerce <span class="text-indigo-600">Headless</span></h3>
+                        </div>
+                        <p class="text-slate-500 max-w-md italic mb-8">Nous créons des boutiques ultra-rapides qui ne ressemblent à aucune autre. Performance Shopify ou Next.js pour une conversion maximale.</p>
+                    </div>
+                    <a href="contact.html" class="text-xs font-black uppercase tracking-widest text-slate-900 group-hover:text-indigo-600 transition-colors italic">Lancer ma boutique →</a>
+                    <div class="absolute -right-10 -bottom-10 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 md:row-span-1 glass-card p-8 rounded-[2.5rem] flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="text-3xl mb-4">📱</div>
+                        <h3 class="text-xl font-bold italic mb-2">Apps Mobile</h3>
+                        <p class="text-slate-500 text-sm italic">iOS & Android avec un seul code (React Native).</p>
+                    </div>
+                    <span class="text-indigo-600 group-hover:translate-x-2 transition-transform inline-block">→</span>
+                </div>
+
+                <div class="md:col-span-2 md:row-span-1 glass-card p-8 rounded-[2.5rem] flex flex-col justify-between group bg-slate-900" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="text-3xl mb-4">🧠</div>
+                        <h3 class="text-xl font-bold italic mb-2 text-white">SaaS & Logiciel</h3>
+                        <p class="text-slate-400 text-sm italic">Automatisation métier et outils internes complexes.</p>
+                    </div>
+                    <span class="text-indigo-400 group-hover:translate-x-2 transition-transform inline-block">→</span>
+                </div>
+
+                <div class="md:col-span-4 md:row-span-1 glass-card p-8 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 class="text-2xl font-bold italic mb-4">Audit & <span class="text-teal-500">Refonte Tech</span></h3>
+                        <p class="text-slate-500 italic text-sm">Votre site actuel est lent ? On analyse votre dette technique et on optimise chaque ligne de code pour un score PageSpeed de 100.</p>
+                    </div>
+                    <div class="w-32 h-32 bg-teal-50 rounded-3xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+                        <span class="text-4xl">⚡</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-24 md:py-32 px-6 bg-slate-900 text-white rounded-[3rem] md:rounded-[5rem] overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
+                <div data-aos="fade-right">
+                    <p class="text-indigo-400 font-bold text-[11px] uppercase tracking-[0.4em] mb-4 italic">Workflow</p>
+                    <h2 class="text-4xl md:text-6xl font-bold italic tracking-tighter">Un process <span class="text-indigo-400 underline underline-offset-8 decoration-1">sans friction.</span></h2>
+                </div>
+                <div class="hidden md:block text-right" data-aos="fade-left">
+                    <p class="text-slate-500 text-xs italic italic font-medium max-w-[200px]">Chaque étape est documentée et accessible en temps réel sur Notion.</p>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="hidden md:block absolute top-[45px] left-0 w-full h-[1px] bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-transparent"></div>
+
+                <div class="grid md:grid-cols-4 gap-12 relative z-10">
+                    
+                    <div class="group" data-aos="fade-up">
+                        <div class="w-20 h-20 rounded-3xl bg-slate-800 border border-white/5 flex items-center justify-center mb-8 group-hover:border-indigo-500/50 transition-all duration-500 relative">
+                            <span class="text-2xl font-black italic text-indigo-400">01</span>
+                            <div class="absolute -inset-2 bg-indigo-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 italic flex items-center gap-2">
+                            Architecture
+                        </h4>
+                        <p class="text-slate-400 text-sm leading-relaxed italic">Audit de vos besoins, choix de la stack et blueprint technique complet avant de coder.</p>
+                    </div>
+
+                    <div class="group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-20 h-20 rounded-3xl bg-slate-800 border border-white/5 flex items-center justify-center mb-8 group-hover:border-purple-500/50 transition-all duration-500 relative">
+                            <span class="text-2xl font-black italic text-purple-400">02</span>
+                            <div class="absolute -inset-2 bg-purple-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 italic">Design System</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed italic">Conception d'une interface exclusive et d'une bibliothèque de composants réutilisables.</p>
+                    </div>
+
+                    <div class="group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-20 h-20 rounded-3xl bg-slate-800 border border-white/5 flex items-center justify-center mb-8 group-hover:border-teal-500/50 transition-all duration-500 relative">
+                            <span class="text-2xl font-black italic text-teal-400">03</span>
+                            <div class="absolute -inset-2 bg-teal-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 italic">Sprint Dev</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed italic">Développement agile avec revues de code hebdomadaires et accès à un environnement de test.</p>
+                    </div>
+
+                    <div class="group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-20 h-20 rounded-3xl bg-indigo-600 flex items-center justify-center mb-8 shadow-lg shadow-indigo-500/20 relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 italic">Livraison</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed italic">Mise en production, formation de vos équipes et monitoring de performance 24/7.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section class="py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="group relative p-10 bg-white border border-slate-100 rounded-[3rem] hover:border-indigo-500/30 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-indigo-500/5" data-aos="fade-up">
+                    <div class="absolute top-6 right-8">
+                        <span class="flex h-2 w-2 rounded-full bg-indigo-600 animate-ping"></span>
+                    </div>
+                    <p class="text-6xl font-bold text-indigo-600 mb-6 italic tracking-tighter group-hover:scale-110 transition-transform duration-500">0%</p>
+                    <h5 class="text-sm font-bold text-slate-900 mb-2 italic uppercase">Dette technique</h5>
+                    <p class="text-[10px] leading-relaxed text-slate-400 font-medium uppercase tracking-[0.15em]">Code propre & maintenable à vie</p>
+                </div>
+
+                <div class="group relative p-10 bg-white border border-slate-100 rounded-[3rem] hover:border-teal-500/30 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-teal-500/5" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-6xl font-bold text-teal-500 mb-6 italic tracking-tighter group-hover:scale-110 transition-transform duration-500">24h</p>
+                    <h5 class="text-sm font-bold text-slate-900 mb-2 italic uppercase">Support Réactif</h5>
+                    <p class="text-[10px] leading-relaxed text-slate-400 font-medium uppercase tracking-[0.15em]">Délai de réponse maximal garanti</p>
+                </div>
+
+                <div class="group relative p-10 bg-white border border-slate-100 rounded-[3rem] hover:border-purple-500/30 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-purple-500/5" data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-6xl font-bold text-purple-600 mb-6 italic tracking-tighter group-hover:scale-110 transition-transform duration-500">Scal.</p>
+                    <h5 class="text-sm font-bold text-slate-900 mb-2 italic uppercase">Architecture</h5>
+                    <p class="text-[10px] leading-relaxed text-slate-400 font-medium uppercase tracking-[0.15em]">Prêt pour 1M d'utilisateurs</p>
+                </div>
+
+                <div class="group relative p-10 bg-slate-900 rounded-[3rem] shadow-2xl transition-all duration-500 border border-slate-800" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute top-6 right-8 opacity-20">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <p class="text-6xl font-bold text-white mb-6 italic tracking-tighter">Full</p>
+                    <h5 class="text-sm font-bold text-indigo-400 mb-2 italic uppercase">IP Rights</h5>
+                    <p class="text-[10px] leading-relaxed text-slate-500 font-medium uppercase tracking-[0.15em]">Propriété intellectuelle totale</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-32 px-6 bg-slate-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            
+            <div class="text-center lg:text-left order-2 lg:order-1" data-aos="fade-right">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tighter italic mb-8">
+                    Réduction des coûts serveurs de <span class="text-indigo-600">60%.</span>
+                </h2>
+                <p class="text-slate-500 mb-10 text-lg leading-relaxed italic">
+                    Migration vers une architecture Serverless pour un SaaS leader.
+                </p>
+                
+                <div class="flex flex-row justify-center lg:justify-start gap-4 md:gap-6">
+                    <div class="glass-card px-4 py-6 md:px-8 md:py-6 rounded-2xl md:rounded-3xl flex-1 max-w-[180px]">
+                        <p class="text-2xl md:text-3xl font-bold italic text-indigo-600">-60%</p>
+                        <p class="text-[8px] md:text-[9px] uppercase font-bold tracking-widest text-slate-400 mt-1 leading-tight">Facture Cloud</p>
+                    </div>
+                    <div class="glass-card px-4 py-6 md:px-8 md:py-6 rounded-2xl md:rounded-3xl flex-1 max-w-[180px]">
+                        <p class="text-2xl md:text-3xl font-bold italic text-teal-500">200ms</p>
+                        <p class="text-[8px] md:text-[9px] uppercase font-bold tracking-widest text-slate-400 mt-1 leading-tight">Réponse API</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-1 lg:order-2 w-full max-w-full" data-aos="flip-up">
+                <div class="bg-slate-900 rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-2xl relative italic overflow-hidden">
+                    <div class="flex gap-1.5 mb-6">
+                        <div class="w-2.5 h-2.5 rounded-full bg-red-500/40"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-amber-500/40"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-emerald-500/40"></div>
+                    </div>
+                    
+                    <pre class="text-indigo-300 font-mono text-[11px] sm:text-xs md:text-sm leading-relaxed whitespace-pre-wrap break-words"><code><span class="text-purple-400">async</span> function <span class="text-teal-400">optimize</span>(infra) {
+  <span class="text-slate-500">//Bye bye debt</span>
+  <span class="text-purple-400">await</span> infra.toServerless();
+  <span class="text-purple-400">return</span> { 
+    cost: <span class="text-orange-300">'60% lower'</span>, 
+    speed: <span class="text-orange-300">'0.2s'</span> 
+  };
+}</code></pre>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold italic text-center mb-20">Ceux qui nous font <span class="text-indigo-600">confiance.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-10 bg-white rounded-[2.5rem] border border-slate-50 shadow-sm italic" data-aos="fade-up">
+                    <p class="text-slate-500 mb-8 italic">"Une compréhension immédiate de nos enjeux métier. Rare pour une agence technique."</p>
+                    <p class="font-bold text-sm">— Marc L., CEO</p>
+                </div>
+                <div class="p-10 bg-white rounded-[2.5rem] border border-slate-50 shadow-sm italic" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-slate-500 mb-8 italic">"Leur stack technique nous a permis de scaler de 1k à 100k utilisateurs sans bug."</p>
+                    <p class="font-bold text-sm">— Sophie R., CTO</p>
+                </div>
+                <div class="p-10 bg-white rounded-[2.5rem] border border-slate-50 shadow-sm italic" data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-slate-500 mb-8 italic">"Code propre, documenté et livré dans les temps. Rien à redire."</p>
+                    <p class="font-bold text-sm">— Thomas K., Produit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-slate-50">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 italic">Questions fréquentes</h2>
+            <div class="space-y-4">
+                <details class="bg-white p-6 rounded-3xl border border-slate-100 cursor-pointer group">
+                    <summary class="font-bold italic flex justify-between items-center list-none">
+                        Suis-je propriétaire du code ?
+                        <span class="text-indigo-600 group-open:rotate-180 transition-transform">↓</span>
+                    </summary>
+                    <p class="mt-4 text-slate-500 text-sm italic">Oui, 100% des droits intellectuels vous sont cédés dès la livraison.</p>
+                </details>
+                <details class="bg-white p-6 rounded-3xl border border-slate-100 cursor-pointer group">
+                    <summary class="font-bold italic flex justify-between items-center list-none">
+                        Quelles technos utilisez-vous ?
+                        <span class="text-indigo-600 group-open:rotate-180 transition-transform">↓</span>
+                    </summary>
+                    <p class="mt-4 text-slate-500 text-sm italic">Principalement Next.js, TypeScript, Node.js et AWS pour la performance.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <div class="py-14 bg-white border-y border-slate-100 overflow-hidden">
+        <div class="animate-marquee flex gap-20 items-center opacity-30 grayscale whitespace-nowrap">
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">React</span>
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">TypeScript</span>
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">AWS</span>
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">Node.js</span>
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">Tailwind</span>
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">Figma</span>
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">React</span>
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">TypeScript</span>
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">AWS</span>
+            <span class="text-2xl font-bold italic uppercase tracking-tighter">Node.js</span>
+        </div>
+    </div>
+
+<footer class="bg-slate-900 pt-24 pb-12 px-6 overflow-hidden relative">
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 via-teal-400 to-indigo-600"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#ffffff05_1px,transparent_1px)] [background-size:32px_32px]"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid lg:grid-cols-12 gap-16 mb-20">
+            
+            <div class="lg:col-span-5">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-black text-white italic">O</div>
+                    <span class="text-2xl font-black text-white italic tracking-tighter">Opticode<span class="text-indigo-500">.</span></span>
+                </div>
+                <p class="text-slate-400 text-sm italic leading-relaxed max-w-sm mb-8">
+                    Architecte de solutions numériques haute performance. Nous transformons vos visions complexes en infrastructures logicielles scalables.
+                </p>
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse shadow-[0_0_10px_#2dd4bf]"></span>
+                    <span class="text-[10px] font-mono text-teal-400 uppercase tracking-[0.2em]">System_Status: Operational</span>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-black text-[10px] uppercase tracking-widest mb-6 italic border-l-2 border-indigo-600 pl-3">Navigation</h4>
+                    <ul class="space-y-4 text-sm text-slate-500 font-bold italic">
+                        <li><a href="services.html" class="hover:text-indigo-400 transition-colors">./Services</a></li>
+                        <li><a href="portfolio.html" class="hover:text-indigo-400 transition-colors">./Portfolio</a></li>
+                        <li><a href="methode.html" class="hover:text-indigo-400 transition-colors">./Méthode</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-black text-[10px] uppercase tracking-widest mb-6 italic border-l-2 border-indigo-600 pl-3">Contact</h4>
+                    <ul class="space-y-4 text-sm text-slate-500 font-bold italic">
+                        <li><a href="contact.html" class="hover:text-indigo-400 transition-colors">Briefing_Room</a></li>
+                        <li class="text-[11px] font-mono lowercase opacity-50">contact.opticode@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest">© 2026 Opticode_Digital_Artisans // All_Rights_Reserved</span>
+            <div class="flex gap-6">
+                <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest cursor-help hover:text-white transition-colors">Privacy_Policy</span>
+                <span class="text-[9px] font-mono text-slate-600 uppercase tracking-widest cursor-help hover:text-white transition-colors">Terms_Of_Service</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 100 });
+
+        // MENU MOBILE LOGIC
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('active');
+            // Rotation de l'icône burger quand ouvert
+            menuIcon.style.transform = mobileMenu.classList.contains('active') ? 'rotate(90deg)' : 'rotate(0deg)';
+        });
+
+        // Fermer le menu si on clique sur un lien
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuIcon.style.transform = 'rotate(0deg)';
+            });
+        });
+
+        // Fermer le menu si on clique n'importe où ailleurs
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                menuIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // PROGRESS BAR
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        });
+
+        // PERFORMANCE COUNTER
+        const targetPerf = 180;
+        const perfEl = document.getElementById('perf-counter');
+        let currentPerf = 0;
+        const perfInterval = setInterval(() => {
+            currentPerf += 4;
+            if (currentPerf >= targetPerf) {
+                perfEl.innerText = targetPerf;
+                clearInterval(perfInterval);
+            } else {
+                perfEl.innerText = currentPerf;
+            }
+        }, 20);
+    </script>
+</body>
+</html>
